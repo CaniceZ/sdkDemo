@@ -56,7 +56,7 @@ var mlSdk = {
   innerCreateFrame: function(phone){
     var iframe = document.createElement("iframe");
     // 设置iframe的属性
-    iframe.src = `http://127.0.0.1:8080/imusic.html?phone=${phone}`;
+    iframe.src = `https://canicez.github.io/sdkDemo/imusic.html?phone=${phone}`;
     iframe.name = "imusic_frame";
     iframe.style.position = "absolute";
     iframe.style.top = 0;
