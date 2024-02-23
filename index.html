@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>合作方页面</title>
+
+</head>
+<body>
+    <h2>合作方的页面</h2>
+    <div>
+    手机号: <input id="myInput" type="text">
+  </div>
+  <br />
+    <button id="login">登录</button>
+    <button id="track">sdk事件</button>
+</body>
+</html>
+<script src="./js/imusicSdk.js"></script>  
+<script>
+  document.getElementById("login").onclick = (function(event) {
+		console.log("点击登录")
+    mlSdk.init(document.getElementById("myInput").value)
+		mlSdk.login('小强', document.getElementById("myInput").value)
+	});
+  // imusic sdk的关闭回调
+  mlSdk.hub.on('close', closeFun)
+  function closeFun(data){
+    console.log('imusic sdk的关闭回调---', data)
+    alert("已办理")
+  }
+  // 触发埋点并回调
+  document.getElementById("track").onclick = (function(event) {
+		console.log("点击埋点")
+    mlSdk.getUserName(document.getElementById("myInput").value, function(res){
+			alert('sdk回调回来的数据：' +JSON.stringify(res))
+		})
+	});
+  
+</script>

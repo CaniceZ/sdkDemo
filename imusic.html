@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>imusic </title>
+    <style>
+        body{
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+    <h2>imusic 的页面</h2>
+    <div>手机号: <span id="phone"></span></div>
+    <div>验证码：<input type="text"></div>
+    <br />
+    <button id="back">确认办理</button>
+</body>
+</html>
+<script>
+  window.onload = function(){
+console.log('是否在iframe', window.parent !== window)
+    document.getElementById("phone").innerHTML = (new URL(window.location.href)).searchParams.get('phone')
+  }
+  window.addEventListener('message', function(messageEvent) {
+    console.log(messageEvent)
+	});
+  document.getElementById("back").onclick = (function(event){
+    privateFunSent({funName: 'close', params: {a:11}})
+  })
+  function privateFunSent(data){
+    parent.postMessage(data,'*');
+}
+</script>
